@@ -1,0 +1,92 @@
+import { createSlice } from "@reduxjs/toolkit";
+
+const nameModalSlice = createSlice({
+	name: "nameModal",
+	initialState: {
+		value: false,
+	},
+	reducers: {
+		showNameModal: (state) => {
+			state.value = true;
+		},
+		hideNameModal: (state) => {
+			state.value = false;
+		},
+	},
+});
+
+export const { showNameModal, hideNameModal } = nameModalSlice.actions;
+
+// Creating a slice for the delete confirmation modal
+const deleteConfirmationModalSlice = createSlice({
+	name: "deleteModal",
+	initialState: {
+		value: false, // Initial state of the delete modal, set to false (hidden)
+	},
+	reducers: {
+		// Action to show the delete modal
+		showDeleteModal: (state) => {
+			state.value = true;
+		},
+		// Action to hide the delete modal
+		hideDeleteModal: (state) => {
+			state.value = false;
+		},
+	},
+});
+
+// Exporting the actions created by the deleteConfirmationModalSlice
+export const { showDeleteModal, hideDeleteModal } = deleteConfirmationModalSlice.actions;
+
+// Creating a slice for the view quiz confirmation modal
+const viewQuizConfirmationModalSlice = createSlice({
+	name: "viewQuizModal",
+	initialState: {
+		value: false, // Initial state of the view quiz confirmation modal, set to false (hidden)
+	},
+	reducers: {
+		// Action to show the view quiz modal
+		showViewQuizModal: (state) => {
+			state.value = true;
+		},
+		// Action to hide the view quiz modal
+		hideViewQuizModal: (state) => {
+			state.value = false;
+		},
+	},
+});
+
+// Exporting the actions created by the viewQuizConfirmationModalSlice
+export const { showViewQuizModal, hideViewQuizModal } = viewQuizConfirmationModalSlice.actions;
+
+// Creating a slice for the quit quiz confirmation modal
+const quitQuizConfirmationModalSlice = createSlice({
+	name: "quitModal",
+	initialState: {
+		value: false, // Initial state of the quit modal, set to false (hidden)
+	},
+	reducers: {
+		// Action to show the quit modal
+		showQuitModal: (state) => {
+			state.value = true;
+		},
+		// Action to hide the quit modal
+		hideQuitModal: (state) => {
+			state.value = false;
+		},
+	},
+});
+
+// Exporting the actions created by the quitQuizConfirmationModalSlice
+export const { showQuitModal, hideQuitModal } = quitQuizConfirmationModalSlice.actions;
+
+// Combining the reducers into a single object
+const modalsReducers = {
+	nameModal: nameModalSlice.reducer,
+	deleteModal: deleteConfirmationModalSlice.reducer,
+	quitModal: quitQuizConfirmationModalSlice.reducer,
+	viewQuizModal: viewQuizConfirmationModalSlice.reducer,
+};
+
+// Exporting the combined reducers
+export default modalsReducers;
