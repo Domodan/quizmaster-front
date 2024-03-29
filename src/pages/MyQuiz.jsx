@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import toast from "react-hot-toast";
 import { useNavigate } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
@@ -52,9 +52,14 @@ const MyQuiz = () => {
 
 	const showDeleteModalState = useSelector((state) => state.deleteModal.value);
 	const quizDetails = useSelector((state) => state.quiz.quizDetails);
+	const quizAdmin = useSelector((state) => state.player.admin);
 
 	// State to track the index of the quiz to be deleted
 	const [deleteQuizIndex, setDeleteQuizIndex] = useState(null);
+
+	useEffect(() => {
+		if (!quizAdmin) navigate("/");
+	}, [quizAdmin, navigate]);
 
 	const handleShowModal = (index) => {
 		setDeleteQuizIndex(index);

@@ -38,9 +38,10 @@ const PlayQuiz = () => {
 
 	// Get player name from Redux state
 	const playerName = useSelector((state) => state.player.name);
+	const username = localStorage.getItem("username");
 
 	// Modal State from Redux
-	const nameModalState = useSelector((state) => state.nameModal.value);
+	// const nameModalState = useSelector((state) => state.nameModal.value);
 	const quitModalState = useSelector((state) => state.quitModal.value);
 
 	// Effect to handle modal display and beforeunload event
@@ -157,8 +158,9 @@ const PlayQuiz = () => {
 				<p className={styles.not_found_text}>No active quizzes found</p>
 			</section>
 		);
-	else if (!playerName && nameModalState) return <ParticipantName open={true} />;
-	else if (quizOver) return <Results score={score} outOf={outOf} handleReplay={handleReplay} />;
+	else if (username == null && !playerName) {
+		return <ParticipantName open={true} />;
+	} else if (quizOver) return <Results score={score} outOf={outOf} handleReplay={handleReplay} />;
 	else
 		return (
 			<section className={styles.play_quiz_section}>
